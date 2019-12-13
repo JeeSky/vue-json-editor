@@ -1,19 +1,19 @@
 <template>
-  <div class="d_codemirror" :class="{ merge }">
+  <div class="vue_json_editors" :class="{ merge }">
     <div ref="mergeview" v-if="merge"></div>
-    <textarea ref="textarea" :name="name" :placeholder="placeholder" v-else></textarea>
+    <textarea ref="textarea" :name="name" :placeholder="placeholder" v-else/>
     <button
         v-if="fullScreen" class="codemirror_btn"
         @click="full">
-      <i v-if="isFullscreen" class="iconfont icon-suoxiao"></i>
-      <i v-else class="iconfont icon-quanping"></i>
+      <i v-if="isFullscreen" class="iconfont icon-suoxiao"/>
+      <i v-else class="iconfont icon-quanping"/>
     </button>
   </div>
 </template>
 
 <script>
-  import element from '../src/mixins/element.js'
-  import './icon/iconfont.css'
+  import element from 'vue-json-editors/src/mixins/element'
+  import 'vue-json-editors/src/icon/iconfont.css'
 
   require('script-loader!jsonlint')
   import _CodeMirror from 'codemirror'
@@ -29,31 +29,6 @@
   import 'codemirror/mode/shell/shell'
 
   const CodeMirror = window.CodeMirror || _CodeMirror
-
-  // pollfill
-  if (typeof Object.assign != 'function') {
-    Object.defineProperty(Object, 'assign', {
-      value(target, varArgs) {
-        if (target == null) {
-          throw new TypeError('Cannot convert undefined or null to object')
-        }
-        const to = Object(target)
-        for (let index = 1; index < arguments.length; index++) {
-          const nextSource = arguments[index]
-          if (nextSource != null) {
-            for (const nextKey in nextSource) {
-              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                to[nextKey] = nextSource[nextKey]
-              }
-            }
-          }
-        }
-        return to
-      },
-      writable: true,
-      configurable: true
-    })
-  }
 
   // export
   export default {
@@ -295,7 +270,7 @@
 </script>
 
 <style scoped lang="scss">
-  .d_codemirror {
+  .vue_json_editors {
     position: relative;
     height: 100%;
     font-size: 14px;

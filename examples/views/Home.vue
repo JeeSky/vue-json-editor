@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div style="height: 500px;background-color: palegoldenrod">124</div>
     <vue-json-editor v-model="json" :options="options"/>
   </div>
 </template>

@@ -1,3 +1,8 @@
+const path = require('path')
+const resolve = (dir) => {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
   pages: {
     index: {
@@ -11,16 +16,23 @@ module.exports = {
     extract: false
   },
   chainWebpack: config => {
+    // config.module
+    //   .rule('js')
+    //   .include
+    //   .add('/packages')
+    //   .end()
+    //   .use('babel')
+    //   .loader('babel-loader')
+    //   .tap(options => {
+    //     return options
+    //   })
     config.module
-      .rule('js')
-      .include
-      .add('/packages')
-      .end()
-      .use('babel')
-      .loader('babel-loader')
-      .tap(options => {
-        return options
-      })
+      .rule('js').use('babel-loader')
+    config.resolve.alias
+      .set('vue-json-editors', resolve('./'))
+  },
+  configureWebpack: config => {
+    config.entry.app = ["babel-polyfill", "./examples/main.js"];
   },
   devServer: {
     open: true,
