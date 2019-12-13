@@ -1,25 +1,32 @@
 {
-  "name": "codemirror",
+  "name": "vue-json-editors",
   "version": "0.1.0",
-  "private": true,
+  "main": "lib/codemirror.umd.min.js",
+  "private": false,
+  "license": "MIT",
+  "author": "lsx",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name codemirror --dest lib packages/index.js"
   },
   "dependencies": {
-    "core-js": "^3.4.3",
-    "vue": "^2.6.10",
-    "vue-router": "^3.1.3",
-    "vuex": "^3.1.2"
+    "core-js": "3.5.0",
+    "vue": "2.6.10",
+    "vue-router": "3.1.3",
+    "vuex": "3.1.2",
+    "codemirror": "5.49.2",
+    "jsonlint": "1.6.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-router": "^4.1.0",
-    "@vue/cli-plugin-vuex": "^4.1.0",
-    "@vue/cli-service": "^4.1.0",
-    "sass": "^1.23.7",
-    "sass-loader": "^8.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/cli-plugin-babel": "4.1.0",
+    "@vue/cli-plugin-router": "4.1.0",
+    "@vue/cli-plugin-vuex": "4.1.0",
+    "@vue/cli-service": "4.1.0",
+    "sass": "1.23.7",
+    "sass-loader": "8.0.0",
+    "vue-template-compiler": "2.6.10",
+    "script-loader": "0.7.2"
   },
   "browserslist": [
     "> 1%",
