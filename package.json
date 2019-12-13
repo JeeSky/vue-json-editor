@@ -1,10 +1,14 @@
 {
   "name": "vue-json-editors",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "lib/codemirror.umd.min.js",
   "private": false,
   "license": "MIT",
   "author": "lsx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JeeSky/vue-json-editor"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

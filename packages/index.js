@@ -1,10 +1,11 @@
 
 /*
-* Vue-CodeMirror
-* Author: liushu@foxmail.com
-* Github: https://github.com/surmon-china/vue-codemirror
+* Vue-Json-Editor
+* Author: liushuxiang19930729@gmial.com
+* Github: https://github.com/JeeSky/vue-json-editor
 */
 
+import './icon/iconfont.css'
 import _CodeMirror from 'codemirror'
 import codemirror from './Index.vue'
 

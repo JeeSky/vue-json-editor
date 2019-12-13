@@ -2,14 +2,12 @@
   <div class="d_codemirror" :class="{ merge }">
     <div ref="mergeview" v-if="merge"></div>
     <textarea ref="textarea" :name="name" :placeholder="placeholder" v-else></textarea>
-    <!--    <el-button-->
-    <!--        v-if="fullScreen"-->
-    <!--        class="codemirror_btn" round plain type="success"-->
-    <!--        :class="isFullscreen?'fullscreen':'notFullscreen'"-->
-    <!--        @click="full">-->
-    <!--      <svg-icon class="spe_svg" icon-class="fullScreen"/>-->
-    <!--    </el-button>-->
-    <button class="codemirror_btn">全屏</button>
+    <button
+        v-if="fullScreen" class="codemirror_btn"
+        @click="full">
+      <i v-if="isFullscreen" class="iconfont icon-suoxiao"></i>
+      <i v-else class="iconfont icon-quanping"></i>
+    </button>
   </div>
 </template>
 
@@ -295,12 +293,15 @@
   .d_codemirror {
     position: relative;
     height: 100%;
+    font-size: 14px;
+    line-height: 1.5;
 
     .CodeMirror-fullscreen {
       display: none;
     }
 
     .codemirror_btn {
+      z-index: 100;
       outline: none;
       line-height: 1.499;
       position: absolute;
@@ -311,7 +312,7 @@
       white-space: nowrap;
       text-align: center;
       background-image: none;
-      border: 1px solid #d9d9d9;
+      border: none;
       box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
       cursor: pointer;
       transition: all .3s cubic-bezier(.645, .045, .355, 1);
@@ -320,12 +321,12 @@
       height: 28px;
       padding: 0 15px;
       font-size: 14px;
-      border-radius: 4px;
-      color: rgba(0, 0, 0, .65);
-      background-color: #ffffff;
+      border-radius: 12px;
+      color: #ffffff;
+      background-color: transparent;
       opacity: .65;
 
-      &:hover{
+      &:hover {
         color: #40a9ff;
         border-color: #40a9ff;
         background-color: #ffffff;
@@ -333,19 +334,6 @@
       }
     }
 
-    .fullscreen {
-      position: fixed;
-      right: 30px;
-      top: 15px;
-      z-index: 1002;
-    }
-
-    .notFullscreen {
-      position: absolute;
-      right: 20px;
-      top: 10px;
-      z-index: 10;
-    }
   }
 
   .spe_svg {

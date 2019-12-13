@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <codemirror v-model="json"/>
+    <codemirror v-model="json" :options="{
+
+    }"/>
+    {{json}}
   </div>
 </template>
 

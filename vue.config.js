@@ -6,4 +6,7 @@ module.exports = {
       filename: 'index.html'
     },
   },
+  devServer:{
+    open: true,
+  },
 }
