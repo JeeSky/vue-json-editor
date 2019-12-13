@@ -6,7 +6,23 @@ module.exports = {
       filename: 'index.html'
     },
   },
-  devServer:{
+  productionSourceMap: false,
+  css: {
+    extract: false
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('js')
+      .include
+      .add('/packages')
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap(options => {
+        return options
+      })
+  },
+  devServer: {
     open: true,
   },
 }

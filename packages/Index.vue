@@ -13,6 +13,7 @@
 
 <script>
   import element from '../src/mixins/element.js'
+  import './icon/iconfont.css'
 
   require('script-loader!jsonlint')
   import _CodeMirror from 'codemirror'
@@ -299,6 +300,7 @@
     height: 100%;
     font-size: 14px;
     line-height: 1.5;
+    text-align: left;
 
     .CodeMirror-fullscreen {
       display: none;

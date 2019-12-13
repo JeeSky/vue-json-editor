@@ -1,7 +1,7 @@
 {
   "name": "vue-json-editors",
-  "version": "0.4.0",
-  "main": "lib/codemirror.umd.min.js",
+  "version": "0.6.5",
+  "main": "lib/vue-json-editors.umd.min.js",
   "private": false,
   "license": "MIT",
   "author": "lsx",
@@ -30,7 +30,8 @@
     "sass": "1.23.7",
     "sass-loader": "8.0.0",
     "vue-template-compiler": "2.6.10",
-    "script-loader": "0.7.2"
+    "script-loader": "0.7.2",
+    "babel-plugin-component": "1.1.1"
   },
   "browserslist": [
     "> 1%",

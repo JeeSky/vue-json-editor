@@ -1,9 +1,6 @@
 <template>
-  <div class="home">
-    <vue-json-editor v-model="json" :options="{
-
-    }"/>
-    {{json}}
+  <div>
+    <vue-json-editor v-model="json" :options="options"/>
   </div>
 </template>
 
@@ -12,7 +9,13 @@
     name: 'home',
     data() {
       return {
-        json: '{}'
+        json: '{}',
+        options: {
+          //theme:'rubyblue',        //default
+          //lineNumbers:true,        //default
+          mode: 'application/json',
+          readOnly: true
+        },
       }
     },
   }

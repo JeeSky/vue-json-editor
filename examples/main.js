@@ -7,8 +7,8 @@ import Codemirror from '../packages'
 
 Vue.use(Codemirror,{
   options: {
-    theme: 'rubyblue',
-    lineNumbers: true,
+    // theme: 'rubyblue',
+    // lineNumbers: true,
     mode: 'application/json',
     gutters: ['CodeMirror-lint-markers'],
     lint: true
