@@ -49,5 +49,5 @@ Vue.use(VueJsonEditors, /* {
 ```
 
 ## Author
-JeeSky
+[JeeSky](https://github.com/JeeSky)
 
