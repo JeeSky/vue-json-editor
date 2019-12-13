@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <codemirror v-model="json" :options="{
-
+    <vue-json-editor v-model="json" :options="{
+      readOnly:true
     }"/>
     {{json}}
   </div>
