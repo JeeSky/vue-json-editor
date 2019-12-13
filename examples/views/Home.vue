@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <vue-json-editor v-model="json" :options="{
-      readOnly:true
+
     }"/>
     {{json}}
   </div>

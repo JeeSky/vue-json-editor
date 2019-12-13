@@ -12,7 +12,8 @@
 </template>
 
 <script>
-  // import element from '../src/mixins/element'
+  import element from '../src/mixins/element.js'
+
   require('script-loader!jsonlint')
   import _CodeMirror from 'codemirror'
   import 'codemirror/addon/lint/lint.css'
@@ -56,6 +57,7 @@
   // export
   export default {
     name: 'VueJsonEditor',
+    mixins: [element],
     data() {
       return {
         content: '',
@@ -282,6 +284,7 @@
       },
     },
     mounted() {
+      console.log(124)
       this.initialize()
     },
     beforeDestroy() {
