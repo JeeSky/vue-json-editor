@@ -1,9 +1,9 @@
 <template>
   <div class="vue_json_editors" :class="{ merge }">
-    <div ref="mergeview" v-if="merge"></div>
+    <div ref="merge" v-if="merge"></div>
     <textarea ref="textarea" :name="name" :placeholder="placeholder" v-else/>
     <button
-        v-if="fullScreen" class="codemirror_btn"
+        v-if="fullScreen" class="vue_json_editors_btn"
         @click="full">
       <i v-if="isFullscreen" class="iconfont icon-suoxiao"/>
       <i v-else class="iconfont icon-quanping"/>
@@ -111,7 +111,7 @@
       initialize() {
         const cmOptions = Object.assign({}, this.globalOptions, this.options)
         if (this.merge) {
-          this.codemirror = CodeMirror.MergeView(this.$refs.mergeview, cmOptions)
+          this.codemirror = CodeMirror.MergeView(this.$refs.merge, cmOptions)
           this.cminstance = this.codemirror.edit
         } else {
           this.codemirror = CodeMirror.fromTextArea(this.$refs.textarea, cmOptions)
@@ -260,7 +260,6 @@
       },
     },
     mounted() {
-      console.log(124)
       this.initialize()
     },
     beforeDestroy() {
@@ -281,7 +280,7 @@
       display: none;
     }
 
-    .codemirror_btn {
+    .vue_json_editors_btn {
       z-index: 100;
       outline: none;
       line-height: 1.499;

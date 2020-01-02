@@ -48,6 +48,14 @@ Vue.use(VueJsonEditors, /* {
 </script>
 ```
 
+Methods | Description 
+-|-----
+validate(valid)|验证json格式是否正确
+关羽|打
+张飞|骂
+
+
+
 ## Author
 [JeeSky](https://github.com/JeeSky)
 
