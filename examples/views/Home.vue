@@ -15,7 +15,7 @@
           //theme:'rubyblue',        //default
           //lineNumbers:true,        //default
           mode: 'application/json',
-          readOnly: true
+          readOnly: false
         },
       }
     },

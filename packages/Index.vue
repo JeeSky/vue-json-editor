@@ -4,6 +4,7 @@
     <textarea ref="textarea" :name="name" :placeholder="placeholder" v-else/>
     <button
         v-if="fullScreen" class="vue_json_editors_btn"
+        :class="{fullScreen:isFullscreen}"
         @click="full">
       <i v-if="isFullscreen" class="iconfont icon-suoxiao"/>
       <i v-else class="iconfont icon-quanping"/>
@@ -12,10 +13,9 @@
 </template>
 
 <script>
+  require('script-loader!jsonlint')
   import element from 'vue-json-editors/src/mixins/element'
   import 'vue-json-editors/src/icon/iconfont.css'
-
-  require('script-loader!jsonlint')
   import _CodeMirror from 'codemirror'
   import 'codemirror/addon/lint/lint.css'
   import 'codemirror/lib/codemirror.css'
@@ -311,6 +311,10 @@
         border-color: #40a9ff;
         background-color: #ffffff;
         opacity: 1;
+      }
+
+      &.fullScreen{
+        position: fixed;
       }
     }
 
