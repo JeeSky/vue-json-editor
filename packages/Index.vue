@@ -13,20 +13,22 @@
 </template>
 
 <script>
+  /**
+   * 固定引入
+   * */
   require('script-loader!jsonlint')
+  import _CodeMirror from 'codemirror'
   import element from 'vue-json-editors/src/mixins/element'
   import 'vue-json-editors/src/icon/iconfont.css'
-  import _CodeMirror from 'codemirror'
   import 'codemirror/addon/lint/lint.css'
   import 'codemirror/lib/codemirror.css'
   import 'codemirror/theme/rubyblue.css'
   import 'codemirror/addon/display/fullscreen.css'
-  import 'codemirror/mode/javascript/javascript'
+
   import 'codemirror/addon/lint/lint'
   import 'codemirror/addon/lint/json-lint'
   import 'codemirror/addon/display/fullscreen'
-  import 'codemirror/mode/python/python'
-  import 'codemirror/mode/shell/shell'
+
 
   const CodeMirror = window.CodeMirror || _CodeMirror
 
@@ -38,7 +40,7 @@
       return {
         content: '',
         codemirror: null,
-        cminstance: null,
+        cmInstance: null,
         isFullscreen: false,
       }
     },
@@ -92,7 +94,7 @@
             if (key === 'refresh') {
               if (options[key]) this.refresh()
             } else {
-              this.cminstance.setOption(key, options[key])
+              this.cmInstance.setOption(key, options[key])
             }
           }
         }
@@ -112,24 +114,24 @@
         const cmOptions = Object.assign({}, this.globalOptions, this.options)
         if (this.merge) {
           this.codemirror = CodeMirror.MergeView(this.$refs.merge, cmOptions)
-          this.cminstance = this.codemirror.edit
+          this.cmInstance = this.codemirror.edit
         } else {
           this.codemirror = CodeMirror.fromTextArea(this.$refs.textarea, cmOptions)
-          this.cminstance = this.codemirror
-          this.cminstance.setValue(this.code || this.value || this.content)
+          this.cmInstance = this.codemirror
+          this.cmInstance.setValue(this.code || this.value || this.content)
         }
-        this.cminstance.on('change', cm => {
+        this.cmInstance.on('change', cm => {
           this.content = cm.getValue()
           if (this.$emit) {
             this.$emit('input', this.content)
           }
         })
 
-        this.cminstance.setOption("extraKeys", {
+        this.cmInstance.setOption("extraKeys", {
           Esc: () => {
-            if (!this.cminstance.getOption('fullScreen')) return
-            this.cminstance.setOption('fullScreen', false)
-            this.isFullscreen = this.cminstance.getOption('fullScreen')
+            if (!this.cmInstance.getOption('fullScreen')) return
+            this.cmInstance.setOption('fullScreen', false)
+            this.isFullscreen = this.cmInstance.getOption('fullScreen')
           }
         })
 
@@ -162,7 +164,7 @@
           .filter(e => (!tmpEvents[e] && (tmpEvents[e] = true)))
           .forEach(event => {
             // 循环事件，并兼容 run-time 事件命名
-            this.cminstance.on(event, (...args) => {
+            this.cmInstance.on(event, (...args) => {
               // console.log('当有事件触发了', event, args)
               this.$emit(event, ...args)
               const lowerCaseEvent = event.replace(/([A-Z])/g, '-$1').toLowerCase()
@@ -180,25 +182,25 @@
       },
       refresh() {
         this.$nextTick(() => {
-          this.cminstance.refresh()
+          this.cmInstance.refresh()
         })
       },
       destroy() {
         // garbage cleanup
-        const element = this.cminstance.doc.cm.getWrapperElement()
+        const element = this.cmInstance.doc.cm.getWrapperElement()
         element && element.remove && element.remove()
       },
       handelCodeChange(newVal) {
-        const cm_value = this.cminstance.getValue()
+        const cm_value = this.cmInstance.getValue()
         if (newVal !== cm_value) {
-          const scrollInfo = this.cminstance.getScrollInfo()
+          const scrollInfo = this.cmInstance.getScrollInfo()
           const cmOptions = Object.assign({}, this.globalOptions, this.options)
-          this.cminstance.setValue(newVal)
+          this.cmInstance.setValue(newVal)
           this.content = newVal
           if (cmOptions.toEnd) {
-            this.cminstance.execCommand('goDocEnd')
+            this.cmInstance.execCommand('goDocEnd')
           } else {
-            this.cminstance.scrollTo(scrollInfo.left, scrollInfo.top)
+            this.cmInstance.scrollTo(scrollInfo.left, scrollInfo.top)
           }
         }
         this.unseenLineMarkers()
@@ -206,23 +208,23 @@
       unseenLineMarkers() {
         if (this.unseenLines !== undefined && this.marker !== undefined) {
           this.unseenLines.forEach(line => {
-            const info = this.cminstance.lineInfo(line)
-            this.cminstance.setGutterMarker(line, 'breakpoints', info.gutterMarkers ? null : this.marker())
+            const info = this.cmInstance.lineInfo(line)
+            this.cmInstance.setGutterMarker(line, 'breakpoints', info.gutterMarkers ? null : this.marker())
           })
         }
       },
       switchMerge() {
         // Save current values
-        const history = this.cminstance.doc.history
-        const cleanGeneration = this.cminstance.doc.cleanGeneration
-        this.options.value = this.cminstance.getValue()
+        const history = this.cmInstance.doc.history
+        const cleanGeneration = this.cmInstance.doc.cleanGeneration
+        this.options.value = this.cmInstance.getValue()
 
         this.destroy()
         this.initialize()
 
         // Restore values
-        this.cminstance.doc.history = history
-        this.cminstance.doc.cleanGeneration = cleanGeneration
+        this.cmInstance.doc.history = history
+        this.cmInstance.doc.cleanGeneration = cleanGeneration
       },
       validate(callback) {
         const cmOptions = Object.assign({}, this.globalOptions, this.options)
@@ -237,7 +239,7 @@
         if (cmOptions.mode === 'application/json') {
           let result = null
           try {
-            result = eval("(" + this.cminstance.getValue() + ")")
+            result = eval("(" + this.cmInstance.getValue() + ")")
           } catch (e) {
 
           }
@@ -251,12 +253,12 @@
         callback(valid)
       },
       full() {
-        this.cminstance.setOption('fullScreen', !this.cminstance.getOption('fullScreen'))
-        this.isFullscreen = this.cminstance.getOption('fullScreen')
+        this.cmInstance.setOption('fullScreen', !this.cmInstance.getOption('fullScreen'))
+        this.isFullscreen = this.cmInstance.getOption('fullScreen')
         document.getElementsByClassName('CodeMirror-fullscreen')
       },
       resize(height) {
-        this.cminstance.setSize('auto', height)
+        this.cmInstance.setSize('auto', height)
       },
     },
     mounted() {

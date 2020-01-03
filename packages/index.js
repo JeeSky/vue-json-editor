@@ -4,23 +4,22 @@
 * Github: https://github.com/JeeSky/vue-json-editor
 */
 
-import codemirror from './Index.vue'
+import editor from './Index.vue'
 
 const install = (Vue, config) => {
   if (config) {
     if (config.options) {
       if (!config.options.theme) config.options.theme = 'rubyblue'
       if (config.options.lineNumbers === null || config.options.lineNumbers === undefined || config.options.lineNumbers === '') config.options.lineNumbers = true
-      codemirror.props.globalOptions.default = () => config.options
+      editor.props.globalOptions.default = () => config.options
     }
     if (config.events) {
-      codemirror.props.globalEvents.default = () => config.events
+      editor.props.globalEvents.default = () => config.events
     }
   }
-  Vue.component(codemirror.name, codemirror)
+  Vue.component(editor.name, editor)
 }
 
-export default {
-  codemirror,
-  install
-}
+export {editor}
+
+export default install

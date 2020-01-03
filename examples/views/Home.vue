@@ -6,6 +6,11 @@
 </template>
 
 <script>
+
+  import 'codemirror/mode/javascript/javascript'
+  import 'codemirror/mode/python/python'
+  import 'codemirror/mode/shell/shell'
+
   export default {
     name: 'home',
     data() {
