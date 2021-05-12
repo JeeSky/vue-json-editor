@@ -15,7 +15,7 @@
     "lib": "vue-cli-service build --target lib --name vue-json-editors --dest lib packages/index.js"
   },
   "dependencies": {
-    "codemirror": "5.50.2",
+    "codemirror": "5.58.2",
     "jsonlint": "1.6.3"
   },
   "devDependencies": {
